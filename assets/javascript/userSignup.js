@@ -46,7 +46,7 @@ var config = {
           });
           // [END authwithemail]
         }
-        document.getElementById('quickstart-sign-in').disabled = true;
+        // document.getElementById('quickstart-sign-in').disabled = true;
       }
       /**
        * Handles the sign up button press.
