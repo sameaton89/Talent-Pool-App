@@ -7,7 +7,7 @@ var config = {
     messagingSenderId: "683196019946"
   };
   firebase.initializeApp(config);
-  var fakeEmail = "sameaton1989@gmail.com";
+  var fakeEmail = "jose.zapata305@gmail.com";
   var fakePassword = "password";
  /**
      * Handles the sign in button press.
@@ -46,14 +46,14 @@ var config = {
           });
           // [END authwithemail]
         }
-        document.getElementById('quickstart-sign-in').disabled = true;
+        // document.getElementById('quickstart-sign-in').disabled = true;
       }
       /**
        * Handles the sign up button press.
        */
       function handleSignUp() {
-        var email = document.getElementById('email').value;
-        var password = document.getElementById('password').value;
+        var email = fakeEmail;
+        var password = fakePassword;
         if (email.length < 4) {
           alert('Please enter an email address.');
           return;
@@ -80,4 +80,4 @@ var config = {
         // [END createwithemail]
       }
 
-toggleSignIn();
+      handleSignUp();
