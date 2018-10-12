@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Talent Pool</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>     
+      
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-sm navbar-dark box-clear-dark">
+        <div class="container">
+            <a id="nav-brand-a" class="navbar-brand" href="#">Placeholder Text</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a id="nav-home-link" data-toggle="collapse" class="nav-item nav-link active" href="#">Placeholder Text</a>
+                    <a data-toggle="collapse" class="nav-item nav-link active" href="#">Placeholder Text</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar -->
+
+    <div class="container p-2">
+        <div class="row p-2">
+            <div class="col-12 p-2">
+                <h1 id="current-player-text" class="text-center">Placeholder Text</h1>
+            </div>
+        </div>
+
+        <div class="row p-2">
+            <div class="col-12 p-2">
+                <h4 id="timer-text" class="text-center">Placeholder Text</h4>
+            </div>
+        </div>        
+    </div>
+</body>
+</html>
