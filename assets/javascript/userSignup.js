@@ -7,17 +7,15 @@ var config = {
     messagingSenderId: "683196019946"
   };
   firebase.initializeApp(config);
-  var fakeEmail = "jose.zapata305@gmail.com";
-  var fakePassword = "password";
- /**
-     * Handles the sign in button press.
-     */
+
     function toggleSignIn() {
         if (firebase.auth().currentUser) {
-          // [START signout]
           firebase.auth().signOut();
-          // [END signout]
         } else {
+          var fakeEmail = $("#input-email").val();
+          var fakePassword = $("#input-password").val();
+          console.log(fakeEmail);
+          console.log(fakePassword);
           var email = fakeEmail;
           var password = fakePassword;
           if (email.length < 4) {
@@ -52,6 +50,11 @@ var config = {
        * Handles the sign up button press.
        */
       function handleSignUp() {
+        var fakeEmail = $("#input-email").val();
+        var fakePassword = $("#input-password").val();      
+        console.log(fakeEmail);
+        console.log(fakePassword);
+
         var email = fakeEmail;
         var password = fakePassword;
         if (email.length < 4) {
@@ -80,4 +83,4 @@ var config = {
         // [END createwithemail]
       }
 
-      handleSignUp();
+    
