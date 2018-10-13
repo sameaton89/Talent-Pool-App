@@ -6,12 +6,15 @@ $(document).ready(function(){
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             console.log('User is signed IN');
-            console.log(user);
-            var userId = 'JjC76M4mRaY9R6Oc0Hy9MxxFyt82';
-            firebase.database().ref('/talent-pool/userSearches/' + user.uid + '/').push(record).then(function(){
+            // console.log(user);
+            // firebase.database().ref('/talent-pool/userSearches/' + user.uid + '/').push(record).then(function(){
 
-            }).catch(function(error){
-                console.log(error);
+            // }).catch(function(error){
+            //     console.log(error);
+            // });
+            var userId = user.uid;
+            firebase.database().ref('/talent-pool/userSearches/' + userId).once('value').then(function(snapshot) {
+                console.log(snapshot.val());
             });
 
         } else {
@@ -38,7 +41,7 @@ $(document).ready(function(){
     });
 
     const record = new searchRecord({
-        "text": "Miami, Fl"
+        "text": "Kissimmee, Fl"
     });
 });
   
