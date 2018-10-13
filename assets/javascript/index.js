@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    alert("TEST ALERT");
+    console.log("TEST ALERT");
 });
 
 $("#btn-signup").on("click", function(event){
