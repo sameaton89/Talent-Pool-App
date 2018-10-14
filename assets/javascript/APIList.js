@@ -1,17 +1,22 @@
-// Firebase 
-var config = {
-    apiKey: "AIzaSyCUa3OmzBQAV9MHxQg6Pgl2s5533V5qjEI",
-    authDomain: "coder-bay-fee9d.firebaseapp.com",
-    databaseURL: "https://coder-bay-fee9d.firebaseio.com",
-    storageBucket: "coder-bay-fee9d.appspot.com"
-  };
-  
-  firebase.initializeApp(config);
-  
-  var database = firebase.database();
-//   Firebase
-// ATTOM
-// without the authDomain?
-// conflict with other variables?
-// ATTOM
-// MAPS
+//Post request example version 2.0
+var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://api.bls.gov/publicAPI/v2/timeseries/data/");
+httpWebRequest.ContentType = "application/json";
+httpWebRequest.Method = "POST";
+//Using Javascript Serializer
+using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream())){
+  var code = new JavaScriptSerializer();
+  var newJson = code.Serialize(new SeriesPost(){
+      seriesid = (new List("CUUR0000SA0")).ToArray(),
+      startyear = "",
+      endyear = "",
+      catalog = true,
+      calculations = true,
+      annualaverage = true,
+      registrationKey = "EnterRegistrationKeyHere"
+  });
+  //View the JSON output
+  System.Diagnostics.Debug.WriteLine(newJson);
+  streamWriter.Write(newJson);
+  streamWriter.Flush();
+  streamWriter.Close();
+};
