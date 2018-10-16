@@ -1,8 +1,50 @@
 $(document).ready(function(){
     console.log("TEST ALERT");
+
+    $(".background-image").css('background-image', 'url(https://picsum.photos/1920/1080/?random)');
+    const app = new App({});
+    
+    $("#btn-login").on("click", function(event){    
+        event.preventDefault();
+        firebase.initializeApp(app.firebaseConfig);
+
+        var email = $("#input-email").val();
+        var password = $("#input-password").val();
+
+        // Add login functionality here....
+    });
 });
 
-$("#btn-signup").on("click", function(event){
-    event.preventDefault();
-    handleSignUp();
-});
+var rent = (1,2,3,4,5);
+var income = (1,2,3,4,5);
+var finalNumber = (function compare (rent, income){
+   rent.foreach((rent)=>income.foreach((income)=> {
+       if(rent === income){
+          finalNumber.push
+       }
+   }
+   ));
+   return finalNumber;
+}
+);
+
+<script >
+    $(document).ready(function(){
+        $("button").click(function(){
+          var number_of_rows = $('#rows').val();
+          var number_of_cols = $('#cols').val();
+          var table_body = '<table border="1">';
+          for(var i=0;i<number_of_rows;i++){
+            table_body+='<tr>';
+            for(var j=0;j<number_of_cols;j++){
+                table_body +='<td>';
+                table_body +='Table data';
+                table_body +='</td>';
+            }
+            table_body+='</tr>';
+          }
+            table_body+='</table>';
+           $('#tableDiv').html(table_body);
+        });
+    });
+</script>
