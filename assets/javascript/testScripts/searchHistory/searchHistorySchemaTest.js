@@ -13,10 +13,9 @@ $(document).ready(function(){
             //     console.log(error);
             // });
             var userId = user.uid;
-            firebase.database().ref('/talent-pool/userSearches/' + userId).once('value').then(function(snapshot) {
+            firebase.database().ref('/talent-pool/userSearches/' + user.uid).once('value').then(function(snapshot) {
                 console.log(snapshot.val());
             });
-
         } else {
           // User is signed out.
           console.log('User is signed out');
