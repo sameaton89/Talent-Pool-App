@@ -20,19 +20,24 @@ $(document).ready(function(){
           method: "GET"
         }).then(function(response) {
           console.log(response);
-          $("#zip-view").empty();
           var zipDiv = $("<div class='zip'>");
 
           var location = response.dataset.name;
-          var pOne = $("<p>").text(location);
-          zipDiv.append(pOne);
           var rent = response.dataset.data[0][1];
-          var pTwo = $("<p>").text("Rent: $" + rent);
-          zipDiv.append(pTwo);        
-          var retrieved = response.dataset.data[0][0];          
-          var pThree = $("<p>").text("Retrieved: " + retrieved)        
-          zipDiv.append(pThree);
-          $("#zip-view").prepend(zipDiv);
+          var retrieved = response.dataset.data[0][0];  
+          
+          var row = $("<tr>");
+          var th = $('<th scope="row">');
+          var td1 = $("<td>" + location + "</td>");
+          var td2 = $("<td>" + rent + "</td>");
+          var td3 = $("<td>" + retrieved + "</td>");
+
+          row.append(th);
+          row.append(td1);
+          row.append(td2);
+          row.append(td3);
+
+          $("#main-table").prepend(row);
         });
       });
 });
