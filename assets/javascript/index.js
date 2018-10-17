@@ -7,17 +7,17 @@ $(document).ready(function(){
 var rent = (1,2,3,4,5);
 var income = (1,2,3,4,5);
 var finalNumber = (function compare (rent, income){
-   rent.foreach((rent)=>income.foreach((income)=> {
-       if(rent === income){
-          finalNumber.push
-       }
-   }
-   ));
+    rent.foreach((rent)=>income.foreach((income)=> {
+        if(rent === income){
+            finalNumber.push
+        }
+    }
+    ));
    return finalNumber;
 }
 );
 
-<script >
+{/* <script >
     $(document).ready(function(){
         $("button").click(function(){
           var number_of_rows = $('#rows').val();
@@ -36,4 +36,4 @@ var finalNumber = (function compare (rent, income){
            $('#tableDiv').html(table_body);
         });
     });
-</script>
+</script> */}

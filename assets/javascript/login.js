@@ -6,20 +6,12 @@ $(document).ready(function(){
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             console.log('User is signed IN');
-            app.genericModal("Sign in successfull", function(){
-                // document.location.replace("../../index.html");
+            app.genericModal("Sign in successful", function(){
+                document.location.replace("index.html");
             });
-            // firebase.auth().signOut().then(function() {
-            //     console.log('Signed Out');
-            //   }, function(error) {
-            //     console.error('Sign Out Error', error);
-            //   });
         } else {
           // User is signed out.
           console.log('User is signed out');
-          app.genericModal("Sign in successfull", function(){
-            // document.location.replace("../../index.html");
-        });
         }
     });
 

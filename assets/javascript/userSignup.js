@@ -17,7 +17,7 @@ $(document).ready(function(){
             alert('Please enter a password.');
             return;
         }
-      
+        
         firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
             if (error.code == 'auth/weak-password') {
                 app.genericModal('The password is too weak.', function(){});        

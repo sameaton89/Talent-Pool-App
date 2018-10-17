@@ -1,5 +1,6 @@
 class App {
     constructor(params) {
+        this.userId = '';
         this.firebaseConfig = {
             apiKey: "AIzaSyCHHdgclpMboJCb5Jz_McWwLS9Jq3ZHu64",
             authDomain: "train-times-eb1d6.firebaseapp.com",
@@ -8,6 +9,32 @@ class App {
             storageBucket: "train-times-eb1d6.appspot.com",
             messagingSenderId: "683196019946"
         };
+    }
+
+    showAlert(message, autoClose, autoCloseTime) {
+        var alertId = "alert" + this.randN(100000, 1);
+        $('#alert-placeholder').prepend('<div id="' + alertId + '" class="alert alert-custom alert-dismissible fade show bg-dark"><a id="alert-text" class="close" data-dismiss="alert">×</a><span>'+message+'</span></div>')
+        if(autoClose == 1) {
+            setTimeout(function() { 
+                $("#" + alertId ).alert('close');
+            }, autoCloseTime);
+        };
+        return alertId;
+    };
+
+    updateOnlineStatus(user, online) {
+        if(online === 'true') {
+            firebase.database().ref('/talent-pool/onlineUsers/' + user.uid).set({
+                "online": online,
+                "email": user.email
+            });
+        } else {
+            firebase.database().ref('/talent-pool/onlineUsers/' + user.uid).remove();
+        }
+    }
+
+    pushSearchRecord(user, record) {
+        firebase.database().ref('/talent-pool/userSearches/' + user.uid).push(record);
     }
 
     randN(multiplier, plus) {
@@ -47,6 +74,26 @@ class App {
             });
         return(income);
     }
+
+    insertZillowDataset(response) {
+        var location = response.dataset.name;
+        var rent = response.dataset.data[0][1];
+        var retrieved = response.dataset.data[0][0];  
+        
+        var row = $("<tr>");
+        var th = $('<th scope="row">');
+        var td1 = $("<td>" + location + "</td>");
+        var td2 = $("<td>" + rent + "</td>");
+        var td3 = $("<td>" + retrieved + "</td>");
+
+        row.append(th);
+        row.append(td1);
+        row.append(td2);
+        row.append(td3);
+
+        $("#main-table").prepend(row);
+    }
+
 }
 
 
