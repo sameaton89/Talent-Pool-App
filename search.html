@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Talent Pool</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+</head>
+
+<body>
+  <div class="container">
+    <h1>Search by Zip Code</h1>
+
+    <form id="zip-form">
+      <label for="zip-input">Find median rent by zip code</label>
+      <input type="text" id="zip-input"><br>
+      <input id="find-zip" type="submit" value="Search">
+    </form>
+
+    <div id="zip-view"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      $("#find-zip").on("click", function(event) {
+        event.preventDefault();
+
+        var zipCode = $("#zip-input").val();
+        
+        var oneBed = "_MRPST"
+        
+        var queryURL = "https://www.quandl.com/api/v3/datasets/ZILLOW/Z" + zipCode + oneBed + "?start_date=2016-08-31&end_date=2018-10-12&api_key=sbkVyCEppvs_5LHqZMP5";
+
+        $.ajax({
+          url: queryURL,
+          method: "GET"
+        }).then(function(response) {
+          console.log(response);
+          var zipDiv = $("<div class='zip'>");
+
+          var location = response.dataset.name;
+
+          var pOne = $("<p>").text(location);
+
+          zipDiv.append(pOne);
+
+          var rent = response.dataset.data[0][1];
+
+          var pTwo = $("<p>").text("Rent: $" + rent);
+
+          zipDiv.append(pTwo);
+          
+          var retrieved = response.dataset.data[0][0];
+          
+          var pThree = $("<p>").text("Retrieved: " + retrieved)
+        
+          zipDiv.append(pThree);
+
+          $("#zip-view").prepend(zipDiv);
+        });
+
+        // -----------------------------------------------------------------------
+
+      });
+    </script>
+  </div>
+</body>
+
+</html>
