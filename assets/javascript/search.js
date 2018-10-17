@@ -3,7 +3,8 @@ $(document).ready(function(){
     
     $("#find-zip").on("click", function(event) {
         event.preventDefault();
-
+        var income = app.nationIncome();
+        console.log(income);
         var zipCode = $("#zip-input").val();
         if(zipCode.length === 0) {
             app.genericModal('You must enter a zip code.', function(){});
