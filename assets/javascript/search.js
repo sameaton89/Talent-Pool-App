@@ -9,7 +9,6 @@ $(document).ready(function(){
         $("#navbar-signin-status").text(user.email);
         app.updateOnlineStatus(user, "true");
 
-        // var onlineUsers = firebase.getInstance('/talent-pool/onlineUsers/');
         firebase.database().ref('/talent-pool/onlineUsers/' + user.uid).onDisconnect().remove();
 
         firebase.database().ref('/talent-pool/userSearches/' + user.uid).once('value').then(function(snapshot) {
