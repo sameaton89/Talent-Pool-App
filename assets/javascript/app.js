@@ -42,7 +42,7 @@ $.ajax({
         // Finds the index[0] of the array Results
         var results = response.Results[0];
         // finds the key medianIncome and stores the value in the income var, this is income for the entire US
-        var income = results.medianIncome;
+        income = results.medianIncome;
         console.log(income);
 
     });
