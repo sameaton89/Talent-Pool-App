@@ -29,6 +29,7 @@ $(document).ready(function(){
                 "zipCode": zipCode
             });
             app.genericModal('You have succesfully signed up to Talent Pool.', function(){});
+            document.location.replace("index.html");
         }).catch(function(error) {
             if (error.code == 'auth/weak-password') {
                 app.genericModal('The password is too weak.', function(){});        
