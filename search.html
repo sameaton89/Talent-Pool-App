@@ -5,6 +5,9 @@
   <meta charset="utf-8">
   <title>Talent Pool</title>
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
   <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-database.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-auth.js"></script>
@@ -42,7 +45,48 @@
       </div>
     </nav>
 
-    <div class="container-fluid">  
+    <div class="container">
+      <h1 class="text-center">Search by Zip Code</h1>
+      <form>
+          <div class="row p-2">
+            <div class="col-12">
+              <label for="zip-input">Find median rent by zip code</label>
+              <input type="text" id="zip-input">
+            </div>
+          </div>
+          <div class="row p-2">
+            <div class="col-12">
+                <select class="form-control" id="sel1">
+                  <option data-url-key="_MRPST">Studio Bedroom</option>
+                  <option data-url-key="_MRP2B">2 Bedroom</option>
+                  <option data-url-key="_MRP3B">3 Bedroom</option>
+                </select>
+            </div>
+          </div>
+          <div class="row p-2">
+            <div class="col-12">
+              <input class="btn p-2" id="find-zip" type="submit" value="Search">
+            </div>
+          </div>
+        </form>
+        <div id="zip-view">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Location</th>
+                  <th scope="col">Rent</th>
+                  <th scope="col">Retrieved</th>
+                  <th scope="col">Users in Area</th>
+                </tr>
+              </thead>
+              <tbody id="main-table">
+              </tbody>
+            </table>
+          </div>
+
+    </div>
+    <!-- <div class="container-fluid">  
       <div class="row">
         <div class="col-sm">
             <h1>Search by Zip Code</h1>
@@ -81,7 +125,7 @@
             </div>      
         </div>
       </div>
-        
+         -->
 
   
       
@@ -111,12 +155,13 @@
           <tbody id="main-table">
           </tbody>
         </table>
-      </div> -->
+      </div>
 
-    </div>
+    </div> -->
 
     <div class="alert position-fixed" role="alert" id="result"></div>
-    <div id="alert-placeholder" class="position-fixed"></div></body>
+    <div id="alert-placeholder" class="position-fixed"></div>
+  </body>
 
 </html>
 

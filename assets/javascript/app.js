@@ -78,6 +78,8 @@ class App {
 
     insertZillowDataset(response, zipCode) {
         var location = response.dataset.name;
+        var locationSplit = location.split("-");
+        location = locationSplit[1] + '|' + locationSplit[2];
         var rent = response.dataset.data[0][1];
         var retrieved = response.dataset.data[0][0];  
         
@@ -90,7 +92,7 @@ class App {
         var rand = Math.floor(Math.random() * 100000) + 1000000000;        
         var htmlTd4 =  '<td>'
                         + '<button data-id="' + rand + '" data-zipcode="' + zipCode + '" class="btn find-users-btn" type="button" data-toggle="collapse" data-target="#collapseExample-' + rand + '" aria-expanded="false" aria-controls="collapseExample">'
-                            + 'Find Users in Area'
+                            + 'Locals'
                         + '</button>'
                         + '<div class="collapse" id="collapseExample-' + rand + '">'
                             + '<div class="card card-body">'
