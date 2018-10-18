@@ -84,7 +84,6 @@ class App {
         var retrieved = response.dataset.data[0][0];  
         
         var row = $("<tr>");
-        var th = $('<th scope="row">');
         var td1 = $('<td>' + location + '</td>');
         var td2 = $('<td>' + rent + '</td>');
         var td3 = $('<td>' + retrieved + '</td>');
@@ -111,7 +110,6 @@ class App {
                         + '</div>'
                      + '</td>';
             
-        row.append(th);
         row.append(td1);
         row.append(td2);
         row.append(td3);
