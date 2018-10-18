@@ -66,7 +66,7 @@ $(document).ready(function(){
         firebase.database().ref('/talent-pool/messages/' + user.uid).on('child_added', function(data) {
           console.log("Receiving a new message");
           console.log(data.val());
-          var message = 'Message from: ' + data.val().fromUserEmail + '\n' + data.val().text;
+          var message = 'Message from: ' + data.val().fromUserEmail + '\n' + data.val().msgText;
           app.showAlert(message, 1, 3500);
         });
     } else {
