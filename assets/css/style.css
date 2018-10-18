@@ -36,7 +36,7 @@ td {
 .card {
     background-color: rgba(0,0,0,0.6) !important;
 }
-@media screen and (min-width: 500px) {
+/* @media screen and (min-width: 500px) {
     body {
         overflow: auto;
     }
@@ -45,7 +45,7 @@ td {
     body {
         overflow: auto;
     }
-}
+} */
 .login-container {
     bottom: 50%;
 }

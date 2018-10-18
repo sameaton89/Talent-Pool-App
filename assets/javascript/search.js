@@ -2,30 +2,40 @@ $(document).ready(function(){
   const app = new App({});  
   firebase.initializeApp(app.firebaseConfig);
 
-  $("#zip-view").on("click", ".find-users-btn", function(){
+  $(document).on("click", ".btn-msg-send", function(){
+    var rowId = $(this).attr("data-id");
+    var msgText = $("#message-text-" + rowId).val();
+    var user = $(this).attr("data-user");
+    if(msgText && user) {
+      firebase.database().ref('/talent-pool/messages/' + user).push({
+        "fromUser": firebase.auth().currentUser.uid,
+        "msgText": msgText
+      });
+    } 
+  });
+
+  $(document).on("click", ".find-users-btn", function(){
+    console.log("Finding Users");
     var zipCode = $(this).attr("data-zipcode");
     var btnId = $(this).attr("data-id");
     var tableId = 'user-table-' + btnId;
-    
+
     $("#" + tableId).empty();
     firebase.database().ref('/talent-pool/users/').once('value').then(function(snapshot) {    
       $.each(snapshot.val(), function(key, value){
         if(zipCode === value.zipCode && firebase.auth().currentUser.uid !== key) {
-          
+          var id = app.randN(100000,1000000000);
           var row = $("<tr>");
           var td1 = $('<td>' + value.email + '</td>');
-          var td2 = $('<td><input></td>');
-          var td3 = $('<td><button class="btn">Send</button></td>');
-
+          var td2 = $('<td><input id="message-text-' + id + '"></td>');          
+          var td3 = $('<td><button data-user="' + key + '" data-id="' + id + '" class="btn btn-msg-send">Send</button></td>');
           row.append(td1);
           row.append(td2);
           row.append(td3);
-  
           $("#" + tableId).prepend(row);
         }
       });
     });
-
   });
 
   firebase.auth().onAuthStateChanged(function(user) {
@@ -46,6 +56,10 @@ $(document).ready(function(){
                 app.insertZillowDataset(response, value.zipCode);
               });
             });
+        });
+
+        firebase.database().ref('/talent-pool/messages/' + user.uid).on('child_added', function(data) {
+          console.log(data);
         });
     } else {
       app.showAlert("Not signed in.", 1, 2500);

@@ -41,8 +41,51 @@
         <h6 id="navbar-signin-status">Signed out</h6>
       </div>
     </nav>
-    <div class="container">  
-      <h1>Search by Zip Code</h1>
+
+    <div class="container-fluid">  
+      <div class="row">
+        <div class="col-sm">
+            <h1>Search by Zip Code</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <form id="zip-form">
+            <label for="zip-input">Find median rent by zip code</label>
+            <input type="text" id="zip-input"><br>
+            <input id="find-zip" type="submit" value="Search">
+            <select class="form-control" id="sel1">
+              <option data-url-key="_MRPST">Studio Bedroom</option>
+              <option data-url-key="_MRP2B">2 Bedroom</option>
+              <option data-url-key="_MRP3B">3 Bedroom</option>
+            </select>
+          </form>    
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+            <div id="zip-view">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Rent</th>
+                    <th scope="col">Retrieved</th>
+                    <th scope="col">Users in Area</th>
+                  </tr>
+                </thead>
+                <tbody id="main-table">
+                </tbody>
+              </table>
+            </div>      
+        </div>
+      </div>
+        
+
+  
+      
+      <!-- <h1>Search by Zip Code</h1>
       <form id="zip-form">
         <label for="zip-input">Find median rent by zip code</label>
         <input type="text" id="zip-input"><br>
@@ -68,12 +111,12 @@
           <tbody id="main-table">
           </tbody>
         </table>
-      </div>
+      </div> -->
 
     </div>
 
-  <div id="alert-placeholder" class="position-sticky"></div>
-</body>
+    <div class="alert" role="alert" id="result"></div>
+    <div id="alert-placeholder" class="position-sticky"></div></body>
 
 </html>
 

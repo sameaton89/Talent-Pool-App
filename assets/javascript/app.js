@@ -12,7 +12,8 @@ class App {
     }
 
     showAlert(message, autoClose, autoCloseTime) {
-        var alertId = "alert" + this.randN(100000, 1);
+        var alertId = "alert" + Math.floor(Math.random() * 100000) + 10000000000;
+
         $('#alert-placeholder').prepend('<div id="' + alertId + '" class="alert alert-custom alert-dismissible fade show bg-dark"><a id="alert-text" class="close" data-dismiss="alert">×</a><span>'+message+'</span></div>')
         if(autoClose == 1) {
             setTimeout(function() { 
