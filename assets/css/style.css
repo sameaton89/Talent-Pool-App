@@ -49,3 +49,11 @@ td {
 .login-container {
     bottom: 50%;
 }
+#alert-placeholder {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 30px;
+    color: white;
+}

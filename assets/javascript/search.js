@@ -10,8 +10,11 @@ $(document).ready(function(){
       $("#message-text-" + rowId).val("");
       firebase.database().ref('/talent-pool/messages/' + user).push({
         "fromUser": firebase.auth().currentUser.uid,
+        "fromUserEmail": firebase.auth().currentUser.email,
         "msgText": msgText
       });
+    } else {
+      app.showAlert("No Message...", 1, 2500);
     } 
   });
 
@@ -63,6 +66,8 @@ $(document).ready(function(){
         firebase.database().ref('/talent-pool/messages/' + user.uid).on('child_added', function(data) {
           console.log("Receiving a new message");
           console.log(data.val());
+          var message = 'Message from: ' + data.val().fromUserEmail + '\n' + data.val().text;
+          app.showAlert(message, 1, 3500);
         });
     } else {
       app.showAlert("Not signed in.", 1, 2500);
