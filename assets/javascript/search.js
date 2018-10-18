@@ -7,6 +7,7 @@ $(document).ready(function(){
     var msgText = $("#message-text-" + rowId).val();
     var user = $(this).attr("data-user");
     if(msgText && user) {
+      $("#message-text-" + rowId).val("");
       firebase.database().ref('/talent-pool/messages/' + user).push({
         "fromUser": firebase.auth().currentUser.uid,
         "msgText": msgText
@@ -15,11 +16,12 @@ $(document).ready(function(){
   });
 
   $(document).on("click", ".find-users-btn", function(){
-    console.log("Finding Users");
     var zipCode = $(this).attr("data-zipcode");
     var btnId = $(this).attr("data-id");
     var tableId = 'user-table-' + btnId;
 
+    $('#main-table').find('.collapse').collapse('hide');
+    
     $("#" + tableId).empty();
     firebase.database().ref('/talent-pool/users/').once('value').then(function(snapshot) {    
       $.each(snapshot.val(), function(key, value){
@@ -59,7 +61,8 @@ $(document).ready(function(){
         });
 
         firebase.database().ref('/talent-pool/messages/' + user.uid).on('child_added', function(data) {
-          console.log(data);
+          console.log("Receiving a new message");
+          console.log(data.val());
         });
     } else {
       app.showAlert("Not signed in.", 1, 2500);
