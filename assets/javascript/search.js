@@ -2,6 +2,32 @@ $(document).ready(function(){
   const app = new App({});  
   firebase.initializeApp(app.firebaseConfig);
 
+  $("#zip-view").on("click", ".find-users-btn", function(){
+    var zipCode = $(this).attr("data-zipcode");
+    var btnId = $(this).attr("data-id");
+    var tableId = 'user-table-' + btnId;
+    
+    $("#" + tableId).empty();
+    firebase.database().ref('/talent-pool/users/').once('value').then(function(snapshot) {    
+      $.each(snapshot.val(), function(key, value){
+        if(zipCode === value.zipCode && firebase.auth().currentUser.uid !== key) {
+          
+          var row = $("<tr>");
+          var td1 = $('<td>' + value.email + '</td>');
+          var td2 = $('<td><input></td>');
+          var td3 = $('<td><button class="btn">Send</button></td>');
+
+          row.append(td1);
+          row.append(td2);
+          row.append(td3);
+  
+          $("#" + tableId).prepend(row);
+        }
+      });
+    });
+
+  });
+
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         app.showAlert("Signed in as: " + user.email, 1, 2500);    
@@ -11,13 +37,13 @@ $(document).ready(function(){
 
         firebase.database().ref('/talent-pool/onlineUsers/' + user.uid).onDisconnect().remove();
 
-        firebase.database().ref('/talent-pool/userSearches/' + user.uid).once('value').then(function(snapshot) {
+        firebase.database().ref('/talent-pool/userSearches/' + user.uid).once('value').then(function(snapshot) {    
             $.each(snapshot.val(), function(key, value){
               $.ajax({
                 url: "https://www.quandl.com/api/v3/datasets/ZILLOW/Z" + value.zipCode + value.houseCode + "?start_date=2018-08-31&end_date=2018-010-12&api_key=sbkVyCEppvs_5LHqZMP5",
                 method: "GET"
               }).then(function(response) {
-                app.insertZillowDataset(response);
+                app.insertZillowDataset(response, value.zipCode);
               });
             });
         });
@@ -42,7 +68,7 @@ $(document).ready(function(){
       url: "https://www.quandl.com/api/v3/datasets/ZILLOW/Z" + zipCode + roomOption + "?start_date=2018-08-31&end_date=2018-010-12&api_key=sbkVyCEppvs_5LHqZMP5",
       method: "GET"
     }).then(function(response) {
-      app.insertZillowDataset(response);
+      app.insertZillowDataset(response, zipCode);
 
       var user = firebase.auth().currentUser;
       if(user) {
@@ -52,6 +78,7 @@ $(document).ready(function(){
         });
       }
     });
+
   });
 
   $("#logout-link").on("click", function(){

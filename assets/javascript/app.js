@@ -75,21 +75,44 @@ class App {
         return(income);
     }
 
-    insertZillowDataset(response) {
+    insertZillowDataset(response, zipCode) {
         var location = response.dataset.name;
         var rent = response.dataset.data[0][1];
         var retrieved = response.dataset.data[0][0];  
         
         var row = $("<tr>");
         var th = $('<th scope="row">');
-        var td1 = $("<td>" + location + "</td>");
-        var td2 = $("<td>" + rent + "</td>");
-        var td3 = $("<td>" + retrieved + "</td>");
+        var td1 = $('<td>' + location + '</td>');
+        var td2 = $('<td>' + rent + '</td>');
+        var td3 = $('<td>' + retrieved + '</td>');
 
+        var rand = Math.floor(Math.random() * 100000) + 1000000000;        
+        var htmlTd4 =  '<td>'
+                        + '<button data-id="' + rand + '" data-zipcode="' + zipCode + '" class="btn find-users-btn" type="button" data-toggle="collapse" data-target="#collapseExample-' + rand + '" aria-expanded="false" aria-controls="collapseExample">'
+                            + 'Find Users in Area'
+                        + '</button>'
+                        + '<div class="collapse" id="collapseExample-' + rand + '">'
+                            + '<div class="card card-body">'
+                                + '<table class="table table-striped">'
+                                    + '<thead>'
+                                        + '<tr>'                                            
+                                            + '<th scope="col">Email</th>'
+                                            + '<th scope="col">Message</th>'
+                                            + '<th scope="col">Send</th>'                                            
+                                        + '</tr>'
+                                    + '</thead>'
+                                    + '<tbody id="user-table-' + rand +'">'
+                                    + '</tbody>'
+                                + '</table>'
+                            + '</div>'
+                        + '</div>'
+                     + '</td>';
+            
         row.append(th);
         row.append(td1);
         row.append(td2);
         row.append(td3);
+        row.append(htmlTd4);
 
         $("#main-table").prepend(row);
     }
