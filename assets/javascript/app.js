@@ -76,7 +76,7 @@ class App {
         return(income);
     }
 
-    insertZillowDataset(response, zipCode) {
+    insertZillowDataset(response, zipCode, medianIncome) {
         var location = response.dataset.name;
         var locationSplit = location.split("-");
         location = locationSplit[1] + '|' + locationSplit[2];
