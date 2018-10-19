@@ -72,8 +72,6 @@ $(document).ready(function(){
         });
 
         firebase.database().ref('/talent-pool/messages/' + user.uid).on('child_added', function(data) {
-          console.log("Receiving a new message");
-          console.log(data.val());
           var message = 'Message from: ' + data.val().fromUserEmail + '\n' + data.val().msgText;
           app.showAlert(message, 1, 3500);
         });
@@ -96,7 +94,10 @@ $(document).ready(function(){
 
     $.ajax({
       url: "https://www.quandl.com/api/v3/datasets/ZILLOW/Z" + zipCode + roomOption + "?start_date=2018-08-31&end_date=2018-010-12&api_key=sbkVyCEppvs_5LHqZMP5",
-      method: "GET"
+      method: "GET",
+      error: function(XMLHttpRequest, textStatus, errorThrown) {
+        app.showAlert("No results found.", 1, 2500);
+      }
     }).then(function(response) {
       app.insertZillowDataset(response, zipCode, app.medianIncome);
 
@@ -108,7 +109,6 @@ $(document).ready(function(){
         });
       }
     });
-
   });
 
   $("#logout-link").on("click", function(){
