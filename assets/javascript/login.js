@@ -6,9 +6,8 @@ $(document).ready(function(){
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             console.log('User is signed IN');
-            app.genericModal("Sign in successful", function(){
-                document.location.replace("index.html");
-            });
+            app.showAlert("Sign in successful", 1, 2500);
+            document.location.replace("index.html");
         } else {
           // User is signed out.
           console.log('User is signed out');

@@ -35,21 +35,26 @@ $(document).ready(function(){
     $('#main-table').find('.collapse').collapse('hide');
     
     $("#" + tableId).empty();
-    firebase.database().ref('/talent-pool/users/').once('value').then(function(snapshot) {    
-      $.each(snapshot.val(), function(key, value){
-        if(zipCode === value.zipCode && firebase.auth().currentUser.uid !== key) {
-          var id = app.randN(100000,1000000000);
-          var row = $("<tr>");
-          var td1 = $('<td>' + value.email + '</td>');
-          var td2 = $('<td><input id="message-text-' + id + '"></td>');          
-          var td3 = $('<td><button data-user="' + key + '" data-id="' + id + '" class="btn btn-msg-send">Send</button></td>');
-          row.append(td1);
-          row.append(td2);
-          row.append(td3);
-          $("#" + tableId).prepend(row);
-        }
+    var user = firebase.auth().currentUser;
+    if(user) {
+      firebase.database().ref('/talent-pool/users/').once('value').then(function(snapshot) {    
+        $.each(snapshot.val(), function(key, value){
+          if(zipCode === value.zipCode && firebase.auth().currentUser.uid !== key) {
+            var id = app.randN(100000,1000000000);
+            var row = $("<tr>");
+            var td1 = $('<td>' + value.email + '</td>');
+            var td2 = $('<td><input id="message-text-' + id + '"></td>');          
+            var td3 = $('<td><button data-user="' + key + '" data-id="' + id + '" class="btn btn-msg-send">Send</button></td>');
+            row.append(td1);
+            row.append(td2);
+            row.append(td3);
+            $("#" + tableId).prepend(row);
+          }
+        });
       });
-    });
+    } else {
+      app.genericModal("You are not signed in to 'Talent Pool'. If you want to take advantage of all the neat features, you should sign in to your accout. If you don't have one, Click on the 'Sign Up' link.", function(){});
+    }
   });
 
   firebase.auth().onAuthStateChanged(function(user) {
