@@ -2,6 +2,17 @@ $(document).ready(function(){
   const app = new App({});  
   firebase.initializeApp(app.firebaseConfig);
 
+  $.ajax({
+    url: "https://www.broadbandmap.gov/broadbandmap/demographic/jun2014/nation?format=json",
+    method: "GET"
+  }).then(function (response) {
+    var results = response.Results[0];      
+    app.medianIncome = results.medianIncome;
+  });
+
+  // app.medianIncome = app.nationIncome();
+  // console.log(app.medianIncome);
+
   $(document).on("click", ".btn-msg-send", function(){
     var rowId = $(this).attr("data-id");
     var msgText = $("#message-text-" + rowId).val();
@@ -58,7 +69,7 @@ $(document).ready(function(){
                 url: "https://www.quandl.com/api/v3/datasets/ZILLOW/Z" + value.zipCode + value.houseCode + "?start_date=2018-08-31&end_date=2018-010-12&api_key=sbkVyCEppvs_5LHqZMP5",
                 method: "GET"
               }).then(function(response) {
-                app.insertZillowDataset(response, value.zipCode);
+                app.insertZillowDataset(response, value.zipCode, app.medianIncome);
               });
             });
         });
@@ -90,7 +101,7 @@ $(document).ready(function(){
       url: "https://www.quandl.com/api/v3/datasets/ZILLOW/Z" + zipCode + roomOption + "?start_date=2018-08-31&end_date=2018-010-12&api_key=sbkVyCEppvs_5LHqZMP5",
       method: "GET"
     }).then(function(response) {
-      app.insertZillowDataset(response, zipCode);
+      app.insertZillowDataset(response, zipCode, app.medianIncome);
 
       var user = firebase.auth().currentUser;
       if(user) {

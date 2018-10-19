@@ -56,40 +56,39 @@ class App {
         });
     }
 
-    nationIncome() {
-        var queryURL = "https://www.broadbandmap.gov/broadbandmap/demographic/jun2014/nation?format=json"
-        var income = 0
-        $.ajax({
-            url: queryURL,
-            method: "GET",
-            async: false
-        })
-            // After data comes back from the request
-            .then(function (response) {
+    // nationIncome() {
+    //     var queryURL = "https://www.broadbandmap.gov/broadbandmap/demographic/jun2014/nation?format=json";
+    //     var income = 0;
+    //     $.ajax({
+    //         url: queryURL,
+    //         method: "GET",
+    //         async: false
+    //     }).then(function (response) {
 
-                // Finds the index[0] of the array Results
-                var results = response.Results[0];
-                // finds the key medianIncome and stores the value in the income var, this is income for the entire US
-                income = results.medianIncome;
-
-            });
-        return(income);
-    }
+    //             // Finds the index[0] of the array Results
+    //             var results = response.Results[0];
+    //             // finds the key medianIncome and stores the value in the income var, this is income for the entire US
+    //             income = results.medianIncome;
+    //     });
+    //     return(income);
+    // }
 
     insertZillowDataset(response, zipCode, medianIncome) {
         var location = response.dataset.name;
         var locationSplit = location.split("-");
         location = locationSplit[1] + '|' + locationSplit[2];
+
         var rent = response.dataset.data[0][1];
         var retrieved = response.dataset.data[0][0];  
         
         var row = $("<tr>");
         var td1 = $('<td>' + location + '</td>');
         var td2 = $('<td>' + rent + '</td>');
-        var td3 = $('<td>' + retrieved + '</td>');
+        var td3 = $('<td>' + medianIncome + '</td>');
+        var td4 = $('<td>' + retrieved + '</td>');
 
         var rand = Math.floor(Math.random() * 100000) + 1000000000;        
-        var htmlTd4 =  '<td>'
+        var htmlTd5 =  '<td>'
                         + '<button data-id="' + rand + '" data-zipcode="' + zipCode + '" class="btn find-users-btn" type="button" data-toggle="collapse" data-target="#collapseExample-' + rand + '" aria-expanded="false" aria-controls="collapseExample">'
                             + 'Locals'
                         + '</button>'
@@ -113,7 +112,8 @@ class App {
         row.append(td1);
         row.append(td2);
         row.append(td3);
-        row.append(htmlTd4);
+        row.append(td4);
+        row.append(htmlTd5);
 
         $("#main-table").prepend(row);
     }
