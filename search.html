@@ -10,10 +10,13 @@
   <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-database.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-auth.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
   <link rel="stylesheet" href="assets/css/style.css">
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
   <script src="assets/javascript/bootbox.min.js"></script>
   <script src="assets/javascript/searchHistorySchema.js"></script>
   <script src="assets/javascript/search.js"></script>
@@ -21,71 +24,75 @@
 </head>
 
 <body class="background-image">
-  <nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <a class="hit-the-floor" href="#">Talent Pool</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="search.html">Search <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="login.html">Log In</a>
           </li>
-        <li class="nav-item">
-          <a id="logout-link" class="nav-link" href="#">Log out</a>
-        </li>
-      </ul>
-      <h6 id="navbar-signin-status">Signed out</h6>
-    </div>
-  </nav>
+          <li class="nav-item">
+            <a id="logout-link" class="nav-link" href="#">Log out</a>
+          </li>
+        </ul>
+        <h6 id="navbar-signin-status">Signed out</h6>
+      </div>
+    </nav>
 
   <div class="container">
     <h1 class="text-center">Search by Zip Code</h1>
     <form>
-        <div class="row p-2">
-          <div class="col-12">
-            <label for="zip-input">Find median rent by zip code</label>
-            <input type="text" id="zip-input">
-          </div>
+      <div class="row p-2">
+        <div class="col-12">
+          <label for="zip-input">Find median rent by zip code</label>
+          <input type="text" id="zip-input">
         </div>
-        <div class="row p-2">
-          <div class="col-12">
-              <select class="form-control" id="sel1">
-                <option data-url-key="_MRPST">Studio Bedroom</option>
-                <option data-url-key="_MRP2B">2 Bedroom</option>
-                <option data-url-key="_MRP3B">3 Bedroom</option>
-              </select>
-          </div>
+      </div>
+      <div class="row p-2">
+        <div class="col-12">
+          <select class="form-control" id="sel1">
+            <option data-url-key="_MRPST">Studio Bedroom</option>
+            <option data-url-key="_MRP2B">2 Bedroom</option>
+            <option data-url-key="_MRP3B">3 Bedroom</option>
+          </select>
         </div>
-        <div class="row p-2">
-          <div class="col-12">
-            <input class="btn p-2" id="find-zip" type="submit" value="Search">
-          </div>
+      </div>
+      <div class="row p-2">
+        <div class="col-12">
+          <input class="btn p-2" id="find-zip" type="submit" value="Search">
         </div>
-      </form>
-      <div id="zip-view">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">Location</th>
-                <th scope="col">Rent</th>
-                <th scope="col">Median income</th>
-                <th scope="col">Housing Ratio</th>
-                <th scope="col">Rank (1-5)</th>
-                <th scope="col">Users in Area</th>
-              </tr>
-            </thead>
-            <tbody id="main-table">
-            </tbody>
-          </table>
-        </div>
+      </div>
+    </form>
+    <div id="zip-view">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Location</th>
+            <th scope="col">Rent</th>
+            <th scope="col">Median income</th>
+            <th scope="col">Retrieved</th>
+            <th scope="col">Users in Area</th>
+          </tr>
+        </thead>
+        <tbody id="main-table">
+        </tbody>
+      </table>
+    </div>
   </div>
-  
+
   <div class="alert" role="alert" id="result"></div>
   <div id="alert-placeholder" class="position-fixed"></div>
 </body>
-</html>
 
+</html>
