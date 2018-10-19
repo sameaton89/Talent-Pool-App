@@ -76,8 +76,15 @@ $(document).ready(function(){
           var message = 'Message from: ' + data.val().fromUserEmail + '\n' + data.val().msgText;
           app.showAlert(message, 1, 3500);
         });
+
+        $("#signin-link").hide();
+        $("#logout-link").show();
+        $("#signup-link").hide();
     } else {
       app.showAlert("Not signed in.", 1, 2500);
+      $("#signin-link").show();
+      $("#logout-link").hide();
+      $("#signup-link").show();
     }
   });
 
