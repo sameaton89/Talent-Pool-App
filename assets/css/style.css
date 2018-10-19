@@ -35,9 +35,9 @@ td {
 /* .card-body {
     padding: 0 !important;
 } */
-.card {
+/* .card {
     background-color: rgba(0,0,0,0.6) !important;
-}
+} */
 /* @media screen and (min-width: 500px) {
     body {
         overflow: auto;
@@ -62,16 +62,12 @@ td {
 
 .hit-the-floor {
     color: #fff;
-    font-size: 40px;
+    font-size: 75px;
     font-weight: bold;
     font-family: Helvetica;
     float: left;
     text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
     }
-
-.hit-the-floor a:hover {
-    color: black;
-}
 
 #space {
         margin-top: 10px;
@@ -82,12 +78,13 @@ td {
     font-size: 20px;
     font-weight: bold;
     float: right;
+    text-shadow: 2px 2px 8px whitesmoke;
 }
 .nav-item {
     margin-right: 3px;
 }
 
-.nav-item a{
+.nav-item a {
     border-bottom: 2px solid transparent;
 
 }
@@ -98,4 +95,23 @@ td {
 
 #log-in {
     margin-top: 50px;
+}
+
+footer {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 75x;
+}
+
+.navbar a:hover {
+    /* color: #E4F6F8; */
+    /* text-shadow: none; */
+    text-decoration: none;
+}
+
+
+.card-header{
+    font-weight: bold;
 }
