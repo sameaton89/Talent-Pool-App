@@ -56,23 +56,6 @@ class App {
         });
     }
 
-    // nationIncome() {
-    //     var queryURL = "https://www.broadbandmap.gov/broadbandmap/demographic/jun2014/nation?format=json";
-    //     var income = 0;
-    //     $.ajax({
-    //         url: queryURL,
-    //         method: "GET",
-    //         async: false
-    //     }).then(function (response) {
-
-    //             // Finds the index[0] of the array Results
-    //             var results = response.Results[0];
-    //             // finds the key medianIncome and stores the value in the income var, this is income for the entire US
-    //             income = results.medianIncome;
-    //     });
-    //     return(income);
-    // }
-
     insertZillowDataset(response, zipCode, medianIncome) {
         var location = response.dataset.name;
         var locationSplit = location.split("-");
@@ -80,15 +63,33 @@ class App {
 
         var rent = response.dataset.data[0][1];
         var retrieved = response.dataset.data[0][0];  
-        
+
+        var annualRent = rent * 12;
+        var housingRatio = (annualRent / medianIncome).toFixed(2);    
+        var percent = (housingRatio * 100);
+
+        var rank = 5;
+        if( percent > 20 && percent < 30 ) {
+            rank = 1;
+        } else if( percent > 30 && percent < 36 ) {
+            rank = 2;
+        } else if( percent > 36 && percent < 40 ) {
+            rank = 3;
+        } else if( percent > 40 && percent < 50 ) {
+            rank = 4;
+        } else if( percent > 50 ) {
+            rank = 5;
+        }
+    
         var row = $("<tr>");
         var td1 = $('<td>' + location + '</td>');
         var td2 = $('<td>' + rent + '</td>');
         var td3 = $('<td>' + medianIncome + '</td>');
-        var td4 = $('<td>' + retrieved + '</td>');
+        var td4 = $('<td>' + percent + ' %</td>');
+        var td5 = $('<td>' + rank + '</td>');
 
         var rand = Math.floor(Math.random() * 100000) + 1000000000;        
-        var htmlTd5 =  '<td>'
+        var htmlTd6 =  '<td>'
                         + '<button data-id="' + rand + '" data-zipcode="' + zipCode + '" class="btn find-users-btn" type="button" data-toggle="collapse" data-target="#collapseExample-' + rand + '" aria-expanded="false" aria-controls="collapseExample">'
                             + 'Locals'
                         + '</button>'
@@ -113,7 +114,8 @@ class App {
         row.append(td2);
         row.append(td3);
         row.append(td4);
-        row.append(htmlTd5);
+        row.append(td5);
+        row.append(htmlTd6);
 
         $("#main-table").prepend(row);
     }

@@ -10,9 +10,6 @@ $(document).ready(function(){
     app.medianIncome = results.medianIncome;
   });
 
-  // app.medianIncome = app.nationIncome();
-  // console.log(app.medianIncome);
-
   $(document).on("click", ".btn-msg-send", function(){
     var rowId = $(this).attr("data-id");
     var msgText = $("#message-text-" + rowId).val();
