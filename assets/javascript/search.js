@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  $(".background-image").css('background-image', 'url(https://picsum.photos/1920/1080/?random)');
   const app = new App({});  
   firebase.initializeApp(app.firebaseConfig);
 
