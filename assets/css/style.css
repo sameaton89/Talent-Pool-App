@@ -77,7 +77,8 @@ td {
     padding-left: 10px;
     font-size: 20px;
     font-weight: bold;
-
+    background-color: white;
+    padding: 10px;
 
     /* text-shadow: 2px 2px 8px whitesmoke; */
 }
@@ -118,6 +119,6 @@ footer {
     font-weight: bold;
 }
 
-.navbar {
-    /* background-color: yellow; */
+.jumbotron {
+    font-family: "Helvetica Neue", Georgia, Helvetica, Arial;
 }
