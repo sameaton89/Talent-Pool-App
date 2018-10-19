@@ -34,7 +34,6 @@ $(document).ready(function(){
         firebase.auth().signOut().then(function() {
           // Sign-out successful.
           app.showAlert("Signing out.", 1, 2500); 
-          $("#main-table").empty();
           $("#navbar-signin-status").text("Signed Out");
         }).catch(function(error) {
           // An error happened.
