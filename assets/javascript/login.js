@@ -26,10 +26,16 @@ $(document).ready(function(){
         }
         // Add login functionality here....
         firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION).then(function() {
-            var response = firebase.auth().signInWithEmailAndPassword(email, password);
+            var response = firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+                // Handle Errors here.
+                app.genericModal("Sign in failed. Code: " + error.code + "; Message: " + error.message, function(){
+                    var email = $("#input-email").val("");
+                    var password = $("#input-password").val("");        
+                });
+              });;
             console.log(response);
         }).catch(function(error) {
-            // Handle Errors here.
+            // Handle Errors here.            
             app.genericModal("Sign in failed. Code: " + error.code + "; Message: " + error.message, function(){
                 var email = $("#input-email").val("");
                 var password = $("#input-password").val("");        
