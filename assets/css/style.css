@@ -112,18 +112,16 @@ footer {
 
 .right {
     float: right;
+    width: 100%;
 }
 .navbar a:hover {
     color: #E4F6F8;
     text-decoration: none;
 }
 
-.card-header{
-    font-weight: bold;
-}
-
 .card-header {
     font-family: "Helvetica Neue", Georgia, Helvetica, Arial;
+    font-weight: bold;
 }
 
 .btn-primary {
@@ -132,5 +130,8 @@ footer {
 
 .capital {
     text-transform: capitalize;
+}
 
+.card {
+    padding: 10px;
 }
