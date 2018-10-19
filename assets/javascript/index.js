@@ -27,39 +27,19 @@ $(document).ready(function(){
         }
       });
     
-    // logoutLinkClickFn
+      $("#logout-link").on("click", function(){
+        var userUid = firebase.auth().currentUser.uid;
+        firebase.database().ref('/talent-pool/onlineUsers/' + userUid).remove();
+    
+        firebase.auth().signOut().then(function() {
+          // Sign-out successful.
+          app.showAlert("Signing out.", 1, 2500); 
+          $("#main-table").empty();
+          $("#navbar-signin-status").text("Signed Out");
+        }).catch(function(error) {
+          // An error happened.
+          app.showAlert("There was an error signing out.", 1, 2500);    
+        });
+      });
 });
 
-// var rent = (1,2,3,4,5);
-// var income = (1,2,3,4,5);
-// var finalNumber = (function compare (rent, income){
-//     rent.foreach((rent)=>income.foreach((income)=> {
-//         if(rent === income){
-//             finalNumber.push
-//         }
-//     }
-//     ));
-//    return finalNumber;
-// }
-// );
-
-{/* <script >
-    $(document).ready(function(){
-        $("button").click(function(){
-          var number_of_rows = $('#rows').val();
-          var number_of_cols = $('#cols').val();
-          var table_body = '<table border="1">';
-          for(var i=0;i<number_of_rows;i++){
-            table_body+='<tr>';
-            for(var j=0;j<number_of_cols;j++){
-                table_body +='<td>';
-                table_body +='Table data';
-                table_body +='</td>';
-            }
-            table_body+='</tr>';
-          }
-            table_body+='</table>';
-           $('#tableDiv').html(table_body);
-        });
-    });
-</script> */}
