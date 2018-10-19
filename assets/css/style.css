@@ -106,14 +106,17 @@ footer {
     height: 50px;
     opacity: 0.8;
     font-family: Arial;
-    font-size: 12px;
-    font-style: bold;
+    background: grey;
+
 }
 
-.right {
-    float: right;
-    width: 100%;
+.foot {
+    /* float: right; */
+    font-size: 12px;
+    padding-top: 15px;
+    padding-left: 10px;    
 }
+
 .navbar a:hover {
     color: #E4F6F8;
     text-decoration: none;
