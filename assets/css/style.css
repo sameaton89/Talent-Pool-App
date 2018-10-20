@@ -126,10 +126,9 @@ footer {
 }
 
 .foot {
-    /* float: right; */
     font-size: 12px;
     padding-top: 15px;
-    padding-left: 10px;    
+    padding-left: 10px;
 }
 
 .navbar a:hover {
@@ -146,9 +145,6 @@ footer {
     margin-top: 10px;
 }
 
-.capital {
-    text-transform: capitalize;
-}
 
 .card {
     padding: 10px;
