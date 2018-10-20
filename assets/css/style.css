@@ -57,6 +57,11 @@ td {
         font-size: 30px;
     }
 }
+/* @media screen and (max-width: 470px) {
+    #column-font {
+        font-size: 60%
+    }
+} */
 
 .login-container {
     bottom: 50%;
