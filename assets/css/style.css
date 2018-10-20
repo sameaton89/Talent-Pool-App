@@ -48,6 +48,16 @@ td {
         overflow: auto;
     }
 } */
+
+@media screen and (max-width: 560px) {
+    #logo {
+        font-size: 40px;
+    }
+    #title-font {
+        font-size: 30px;
+    }
+}
+
 .login-container {
     bottom: 50%;
 }
