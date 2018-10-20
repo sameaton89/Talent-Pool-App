@@ -140,9 +140,10 @@ footer {
 }
 
 #signup-login-link {
-    
+    color: white;
 }
 
 #signup-home-link {
-    
+    float: right;
+    color:white;
 }
